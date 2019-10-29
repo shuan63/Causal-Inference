@@ -1,0 +1,25 @@
+data=read.csv("bertrand_clean.csv")
+data
+ATE=mean(data$call[data$black==1])-mean(data$call[data$black==0])
+ATE
+summary(lm(call ~ black, data))
+summary(lm(data$female ~ black, data))
+summary(lm(data$high_quality ~ black, data))
+summary(lm(data$boston ~ black, data))
+summary(lm(call ~ black + female + high_quality + boston, data))
+summary(lm(call ~ black, data, subset = data$high_quality == 1))
+summary(lm(call ~ black, data, subset = data$high_quality == 0))
+summary(lm(call ~ black + high_quality + high_quality * black, data))
+
+summary(lm(call ~ black, data, subset = data$yearsexp == 1))
+summary(lm(call ~ black, data, subset = data$yearsexp == 0))
+summary(lm(call ~ black + yearsexp + yearsexp * black, data))
+
+summary(lm(call ~ black + yearsexp + yearsexp * black, data))
+summary(lm(call ~ black + income_in_city + income_in_city * black, data))
+summary(lm(call ~ black, data, subset = data$boston == 1))
+summary(lm(call ~ black, data, subset = data$boston == 0))
+summary(lm(call ~ black + boston + boston * black, data))
+summary(lm(call ~ black, data, subset = data$college == 1))
+summary(lm(call ~ black, data, subset = data$college == 0))
+summary(lm(call ~ black + college + college * black, data))
